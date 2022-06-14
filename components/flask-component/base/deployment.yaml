@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: flask-component
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: flask-component
+    app.kubernetes.io/part-of: flask-sample
+  name: flask-component
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: flask-component
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: flask-component
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio/user-workload:default-flask-component
+        imagePullPolicy: Always
+        name: container-image
+        resources: {}
+status: {}
